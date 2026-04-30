@@ -16,54 +16,54 @@
         }
 
         .container {
-            background-color: #8b9467; 
-            padding: 60px 40px; /* Más espacio interno */
+            background-color: #8b9467; /* Tu Verde Oliva */
+            padding: 120px 80px; /* Duplicado de la versión anterior */
             border-radius: 2px; 
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
+            box-shadow: 20px 20px 0px rgba(0,0,0,0.2);
             text-align: center;
-            width: 90%; /* Se adapta al ancho del bloque de Notion */
-            max-width: 1000px;
+            width: 95%; 
+            max-width: 1800px; /* Aumentado para pantallas anchas */
         }
 
         #title {
-            font-size: 42px; /* Título mucho más grande */
+            font-size: 84px; /* Duplicado: de 42px a 84px */
             font-weight: bold;
-            margin-bottom: 40px;
-            letter-spacing: 5px;
+            margin-bottom: 80px;
+            letter-spacing: 10px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 40px; /* Duplicado */
         }
 
         .number {
-            font-size: 90px; /* Números masivos */
+            font-size: 180px; /* Duplicado: de 90px a 180px */
             font-weight: bold;
             line-height: 1;
         }
 
         .label {
-            font-size: 22px; /* Etiquetas legibles */
+            font-size: 44px; /* Duplicado: de 22px a 44px */
             text-transform: uppercase;
-            margin-top: 15px;
+            margin-top: 30px;
             opacity: 0.8;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
         }
 
         .config-btn {
-            font-size: 14px; 
+            font-size: 28px; /* Duplicado */
             cursor: pointer;
             opacity: 0.4;
-            margin-top: 50px;
+            margin-top: 100px;
             text-decoration: underline;
         }
         
         input, button {
-            font-size: 20px;
-            padding: 10px;
-            margin-top: 10px;
+            font-size: 40px;
+            padding: 20px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -76,7 +76,7 @@
             <div class="time-box"><span class="number" id="hours">00</span><span class="label">Hrs</span></div>
             <div class="time-box"><span class="number" id="mins">00</span><span class="label">Min</span></div>
         </div>
-        <div id="settings" style="display:none; margin-top: 20px;">
+        <div id="settings" style="display:none; margin-top: 40px;">
             <input type="datetime-local" id="dateInput">
             <button onclick="saveDate()">SET</button>
         </div>
