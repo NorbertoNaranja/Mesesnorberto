@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        .container {
+            background-color: #8b9467; /* Tu Verde Oliva */
+            padding: 20px;
+            border-radius: 2px; /* Bordes cuadrados */
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .number {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* Configuración oculta */
+        #settings {
+            margin-top: 15px;
+            display: none;
+        }
+
+        input {
+            font-family: monospace;
+            border: 1px solid #ffffff;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 5px;
+            outline: none;
+        }
+
+        .config-btn {
+            font-size: 10px;
+            cursor: pointer;
+            opacity: 0.5;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="title" style="font-size: 14px; margin-bottom: 10px;">COUNTDOWN</div>
+        <div class="grid">
+            <div class="time-box"><span class="number" id="weeks">00</span><span class="label">Weeks</span></div>
+            <div class="time-box"><span class="number" id="days">00</span><span class="label">Days</span></div>
+            <div class="time-box"><span class="number" id="hours">00</span><span class="label">Hrs</span></div>
+            <div class="time-box"><span class="number" id="mins">00</span><span class="label">Min</span></div>
+        </div>
+
+        <div id="settings">
+            <input type="datetime-local" id="dateInput">
+            <button onclick="saveDate()" style="cursor:pointer">SET</button>
+        </div>
+        <div class="config-btn" onclick="toggleSettings()">[EDIT TARGET]</div>
+    </div>
+
+    <script>
+        let targetDate = new Date(localStorage.getItem('targetDate') || '2026-12-31T23:59:59');
+
+        function toggleSettings() {
+            const s = document.getElementById('settings');
+            s.style.display = s.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function saveDate() {
+            const val = document.getElementById('dateInput').value;
+            if(val) {
+                targetDate = new Date(val);
+                localStorage.setItem('targetDate', val);
+                toggleSettings();
+            }
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('title').innerText = "TIME IS UP!";
+                return;
+            }
+
+            // Cálculos matemáticos
+            const msInWeek = 1000 * 60 * 60 * 24 * 7;
+            const msInDay = 1000 * 60 * 60 * 24;
+            const msInHour = 1000 * 60 * 60;
+            const msInMin = 1000 * 60;
+
+            const weeks = Math.floor(diff / msInWeek);
+            const days = Math.floor((diff % msInWeek) / msInDay);
+            const hours = Math.floor((diff % msInDay) / msInHour);
+            const mins = Math.floor((diff % msInHour) / msInMin);
+
+            document.getElementById('weeks').innerText = weeks.toString().padStart(2, '0');
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('mins').innerText = mins.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
