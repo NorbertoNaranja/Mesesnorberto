@@ -6,85 +6,79 @@
         body {
             font-family: 'Courier New', Courier, monospace;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             background-color: transparent;
             color: #ffffff;
+            overflow: hidden;
         }
 
         .container {
-            background-color: #8b9467; /* Tu Verde Oliva */
-            padding: 40px;
-            border-radius: 2px; /* Bordes cuadrados */
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            background-color: #8b9467; 
+            padding: 60px 40px; /* Más espacio interno */
+            border-radius: 2px; 
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
             text-align: center;
-            min-width: 600px;
+            width: 90%; /* Se adapta al ancho del bloque de Notion */
+            max-width: 1000px;
+        }
+
+        #title {
+            font-size: 42px; /* Título mucho más grande */
+            font-weight: bold;
+            margin-bottom: 40px;
+            letter-spacing: 5px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .time-box {
-            display: flex;
-            flex-direction: column;
+            gap: 20px;
         }
 
         .number {
-            font-size: 48px;
+            font-size: 90px; /* Números masivos */
             font-weight: bold;
+            line-height: 1;
         }
 
         .label {
-            font-size: 20px;
+            font-size: 22px; /* Etiquetas legibles */
             text-transform: uppercase;
-            margin-top: 5px;
-            opacity: 0.8;
-        }
-
-        /* Configuración oculta */
-        #settings {
             margin-top: 15px;
-            display: none;
-        }
-
-        input {
-            font-family: monospace;
-            border: 1px solid #ffffff;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 5px;
-            outline: none;
+            opacity: 0.8;
+            letter-spacing: 2px;
         }
 
         .config-btn {
-            font-size: 10px;
+            font-size: 14px; 
             cursor: pointer;
-            opacity: 0.5;
+            opacity: 0.4;
+            margin-top: 50px;
+            text-decoration: underline;
+        }
+        
+        input, button {
+            font-size: 20px;
+            padding: 10px;
             margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <div id="title" style="font-size: 28px; margin-bottom: 10px;">COUNTDOWN</div>
+        <div id="title">COUNTDOWN</div>
         <div class="grid">
             <div class="time-box"><span class="number" id="weeks">00</span><span class="label">Weeks</span></div>
             <div class="time-box"><span class="number" id="days">00</span><span class="label">Days</span></div>
             <div class="time-box"><span class="number" id="hours">00</span><span class="label">Hrs</span></div>
             <div class="time-box"><span class="number" id="mins">00</span><span class="label">Min</span></div>
         </div>
-
-        <div id="settings">
+        <div id="settings" style="display:none; margin-top: 20px;">
             <input type="datetime-local" id="dateInput">
-            <button onclick="saveDate()" style="cursor:pointer">SET</button>
+            <button onclick="saveDate()">SET</button>
         </div>
         <div class="config-btn" onclick="toggleSettings()">[EDIT TARGET]</div>
     </div>
@@ -109,13 +103,10 @@
         function updateCountdown() {
             const now = new Date().getTime();
             const diff = targetDate - now;
-
             if (diff <= 0) {
                 document.getElementById('title').innerText = "TIME IS UP!";
                 return;
             }
-
-            // Cálculos matemáticos
             const msInWeek = 1000 * 60 * 60 * 24 * 7;
             const msInDay = 1000 * 60 * 60 * 24;
             const msInHour = 1000 * 60 * 60;
@@ -131,7 +122,6 @@
             document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
             document.getElementById('mins').innerText = mins.toString().padStart(2, '0');
         }
-
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
