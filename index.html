@@ -8,19 +8,19 @@
             display: flex;
             justify-content: right;
             align-items: right;
-            height: 97vh;
+            height: 70vh;
             margin: 0;
             background-color: transparent; /* Keep the embed area transparent */
         }
         #month-pill {
             /* The Text Style */
             font-size: 28px;
-            font-weight: 600;
-            color: #4b1725; /* Notion default text color */
+            font-weight: 800;
+            color: #fef5ec; /* Notion default text color */
             
             /* The Yellow Background Style */
-            background-color: #d479aa; /* Soft Notion Yellow */
-            padding: 12px 37px; /* Space around the text */
+            background-color: #8b946; /* Soft Notion Yellow */
+            padding: 12px 12px; /* Space around the text */
             border-radius: 2px; /* Rounded corners */
             
             /* Subtle shadows for a widget look */
@@ -33,7 +33,7 @@
     <div id="month-pill"></div>
     <script>
         // Updated JavaScript to target the new ID
-        const monthName = new Date().toLocaleString('en-US', { month: 'long' });
+        const monthName = new Date().toLocaleString('en-US', { weekday: 'long', month: 'long' });
         document.getElementById('month-pill').innerText = monthName;
     </script>
 </body>
