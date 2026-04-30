@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <style>
         body {
-            font-family: "Times New Roman" Times, serif;
+            font-family: 'Courier New', Courier, monospace; /* Change: Square/Typewriter font */
             display: flex;
-            justify-content: right;
-            align-items: right;
-            height: 70vh;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            background-color: transparent; /* Keep the embed area transparent */
+            background-color: transparent;
         }
         #month-pill {
             /* The Text Style */
             font-size: 28px;
-            font-weight: 800;
-            color: #fef5ec; /* Notion default text color */
+            font-weight: bold;
+            color: #ffffff; /* White text looks better on olive */
+            text-transform: uppercase; /* Makes it look even more square/solid */
+            letter-spacing: 2px;
             
-            /* The Yellow Background Style */
-            background-color: #8b9467; /* Soft Notion Yellow */
-            padding: 12px 12px; /* Space around the text */
-            border-radius: 2px; /* Rounded corners */
+            /* The Olive Green Background */
+            background-color: #8b9467; /* Olive Green */
+            padding: 12px 30px; 
             
-            /* Subtle shadows for a widget look */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            /* The Square Edges */
+            border-radius: 2px; /* Change: Almost 0 for sharp square edges */
+            
+            /* Minimal shadow */
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1); 
         }
     </style>
 </head>
 <body>
-    <!-- Updated HTML element with the pill ID -->
     <div id="month-pill"></div>
     <script>
-        // Updated JavaScript to target the new ID
-        const monthName = new Date().toLocaleString('en-US', { weekday: 'long', month: 'long' });
+        const monthName = new Date().toLocaleString('en-US', { month: 'long' });
         document.getElementById('month-pill').innerText = monthName;
     </script>
 </body>
